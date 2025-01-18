@@ -9,5 +9,3 @@ Learn to use AI to assist me in learning and creating
 Make complex structures and algorithms to sort anime charecter power tiers
 
 Make a grocery list
-
-Take over the world
