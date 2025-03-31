@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-   int numbers[] = { 83, 27, 44, 55, 66, 16, 42, 73, 75 };
+   int numbers[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
       
    // Initialize a new Stack and add numbers
    Stack numStack;
