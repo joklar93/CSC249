@@ -1,26 +1,18 @@
 // CSC249
 // M2HW1 - Gold Attempt
-// Binary Search Combined Program
-// Date: April 11, 2025
+// Binary Search and Guessing Game
+// 4/13/25
 
 #include <iostream>
 using namespace std;
 
-// Binary search function
 int BinarySearch(int* numbers, int numbersSize, int key) 
 {
-    // Variables to hold the low and high indices of the area being searched. 
-    // Starts with entire range.
     int low = 0;
     int high = numbersSize - 1;
     
-    // Loop until "low" passes "high"
     while (high >= low) {
-       // Calculate the middle index
        int mid = (high + low) / 2;
- 
-       // Cut the range to either the left or right half,
-       // unless numbers[mid] is the key
        if (numbers[mid] < key) {
           low = mid + 1;
        }
@@ -32,7 +24,7 @@ int BinarySearch(int* numbers, int numbersSize, int key)
        }
     }
     
-    return -1; // not found
+    return -1; 
 }
 
 // Binary search demo function
@@ -40,19 +32,15 @@ void binarySearchDemo() {
     int numbersSize;
     int key;
     
-    // Ask the user for the size of the array
     cout << "Enter the size of the array: ";
     cin >> numbersSize;
     
-    // Create a dynamic array to store the numbers
     int* numbers = new int[numbersSize];
     
-    // Ask the user to input the numbers in ascending order
     cout << "Enter " << numbersSize << " numbers in ascending order:" << endl;
     for (int i = 0; i < numbersSize; i++) {
         cin >> numbers[i];
 
-        // Validate that the numbers are in ascending order
         if (i > 0 && numbers[i] < numbers[i-1]) {
             cout << "Error: Numbers must be in ascending order." << endl;
             cout << "Please restart the binary search demo." << endl;
@@ -61,27 +49,22 @@ void binarySearchDemo() {
         }
     }
     
-    // Ask the user for the key to search
     cout << "Enter the number to search for: ";
     cin >> key;
     
-    // Perform the binary search
     int position = BinarySearch(numbers, numbersSize, key);
     
-    // Display the result
     if (position == -1) {
         cout << key << " was not found in the array." << endl;
     } else {
         cout << key << " was found at index " << position << "." << endl;
     }
     
-    // Deallocate the dynamic array
     delete[] numbers;
 }
 
-// Guessing game function
+
 void guessingGame() {
-    // Variables to set the range of possible numbers
     int low = 0;
     int high = 99;
     int mid;
@@ -94,33 +77,29 @@ void guessingGame() {
     cout << "I will try to guess it in 5 attempts or fewer." << endl;
     cout << "Enter '<' if your number is lower, '>' if higher, or '=' if I guessed correctly." << endl;
     
-    // Continue until the number is found or max attempts reached
+ 
     while (attempts < MAX_ATTEMPTS && !foundNumber && high >= low) {
-        // Calculate the middle point
         mid = (high + low) / 2;
         attempts++;
         
-        // Make a guess
         cout << "Attempt " << attempts << ": Is your number " << mid << "? ";
         cin >> response;
         
-        // Process the user's response
         if (response == '<') {
-            high = mid - 1;  // Number is in the lower half
+            high = mid - 1;
         }
         else if (response == '>') {
-            low = mid + 1;   // Number is in the upper half
+            low = mid + 1;
         }
         else if (response == '=') {
-            foundNumber = true;  // Number found
+            foundNumber = true;
         }
         else {
             cout << "Invalid input. Please enter '<', '>', or '='." << endl;
-            attempts--;  // Don't count this as an attempt
+            attempts--; 
         }
     }
     
-    // Display the result
     if (foundNumber) {
         cout << "Great! I guessed your number (" << mid << ") in " << attempts << " attempts." << endl;
     }
@@ -132,7 +111,6 @@ void guessingGame() {
     }
 }
 
-// Main menu function
 void displayMenu() {
     cout << "\n========== BINARY SEARCH MENU ==========" << endl;
     cout << "1. Binary Search Demo" << endl;
@@ -160,10 +138,8 @@ int main()
             continue;
         }
         
-        // Clear any remaining characters in the input buffer
         cin.ignore(10000, '\n');
         
-        // Process user choice
         switch (choice) {
             case 1:
                 cout << "\n--- Binary Search Demo ---" << endl;
